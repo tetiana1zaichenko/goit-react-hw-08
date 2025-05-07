@@ -1,4 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { fetchDataThunk } from "./operations";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -36,6 +37,11 @@ const contactsSlice = createSlice({
     setError: (state, action) => {
       state.error = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(fetchDataThunk.fulfilled, (state, action) => {
+      state.items = action.payload;
+    });
   },
 });
 
