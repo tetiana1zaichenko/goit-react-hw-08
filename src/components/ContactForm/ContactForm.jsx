@@ -4,6 +4,7 @@ import { useId } from "react";
 import s from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contactsSlice";
+import { addContactThunk } from "../../redux/contactsOps";
 
 const FeedbackSchema = Yup.object().shape({
   name: Yup.string()
@@ -27,7 +28,7 @@ const ContactForm = () => {
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values.name, values.number));
+    dispatch(addContactThunk({ name: values.name, number: values.number }));
     actions.resetForm();
   };
 
