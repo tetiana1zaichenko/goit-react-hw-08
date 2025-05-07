@@ -3,7 +3,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 
 axios.defaults.baseURL = "https://6815012e225ff1af162ace45.mockapi.io";
 
-export const fetchDataThunk = createAsyncThunk(
+export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
   async (_, thunkAPI) => {
     try {
@@ -16,7 +16,7 @@ export const fetchDataThunk = createAsyncThunk(
   }
 );
 
-export const deleteContactThunk = createAsyncThunk(
+export const deleteContact = createAsyncThunk(
   "contacts/deleteContact",
   async (id, thunkAPI) => {
     try {
@@ -29,7 +29,7 @@ export const deleteContactThunk = createAsyncThunk(
   }
 );
 
-export const addContactThunk = createAsyncThunk(
+export const addContact = createAsyncThunk(
   "contacts/addContact",
   async (body, thunkAPI) => {
     try {
@@ -41,17 +41,3 @@ export const addContactThunk = createAsyncThunk(
     }
   }
 );
-
-// export const fetchDataThunk = () => async (dispatch) => {
-//   dispatch(setLoading(true));
-//   try {
-//     const response = await axios.get("/contacts");
-//     console.log("Полученные данные:", response.data);
-//     dispatch(dataFulfilledOperation(response.data));
-//   } catch (error) {
-//     console.error("Ошибка при получении данных:", error);
-//     dispatch(setError(error.message));
-//   } finally {
-//     dispatch(setLoading(false));
-//   }
-// };
