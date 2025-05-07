@@ -20,10 +20,6 @@ const Contact = ({ id, name, number }) => {
         <FaPhoneAlt /> {number}
       </p>
       <button className={s.button} onClick={handleDelete}>
-        {/* <button
-        className={s.button}
-        onClick={() => dispatch(deleteContact(item.id))}
-      > */}
         Delete
       </button>
     </div>
