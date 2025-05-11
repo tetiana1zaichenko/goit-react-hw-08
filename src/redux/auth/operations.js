@@ -52,8 +52,8 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 //   "auth/refresh",
 //   async (_, thunkAPI) => {
 //     try {
-//       const response = await goitAPI.get("/contacts");
-//       removeAuthHeader();
+//       const response = await goitAPI.get("/users/current");
+//       console.log(response.data);
 //       return response.data;
 //     } catch (error) {
 //       console.log(error);
@@ -61,3 +61,24 @@ export const logout = createAsyncThunk("auth/logout", async (_, thunkAPI) => {
 //     }
 //   }
 // );
+
+export const refreshUser = createAsyncThunk(
+  "auth/refresh",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const token = state.auth.token;
+
+    if (!token) {
+      return thunkAPI.rejectWithValue("No token available");
+    }
+
+    try {
+      setAuthHeader(token);
+      const response = await goitAPI.get("/users/current");
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

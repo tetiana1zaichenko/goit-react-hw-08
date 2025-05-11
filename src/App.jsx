@@ -9,11 +9,20 @@ import Contacts from "./pages/Contacts";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout/Layout";
 import { Route, Routes } from "react-router-dom";
-
-// использовать ф-цию рефреш юзер при монтировании
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { refreshUser } from "./redux/auth/operations";
+import { selectIsRefreshing } from "./redux/auth/selectors";
 
 function App() {
-  return (
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  return isRefreshing ? (
+    <h2>Loading</h2>
+  ) : (
     <div>
       <Routes>
         <Route path="/" element={<Layout />}>
