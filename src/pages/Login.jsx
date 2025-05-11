@@ -1,14 +1,3 @@
-// import LoginForm from "../components/LoginForm/LoginForm";
-
-// const Login = () => {
-//   return (
-//     <div>
-//       <LoginForm />
-//     </div>
-//   );
-// };
-
-// export default Login;
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
 import LoginForm from "../components/LoginForm/LoginForm";
