@@ -1,5 +1,3 @@
-// использовать ф-цию регистрации из аут оператион
-
 import { Formik, Form, Field } from "formik";
 import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";

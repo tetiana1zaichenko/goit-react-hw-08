@@ -1,13 +1,30 @@
+// import LoginForm from "../components/LoginForm/LoginForm";
+
+// const Login = () => {
+//   return (
+//     <div>
+//       <LoginForm />
+//     </div>
+//   );
+// };
+
+// export default Login;
 import { useSelector } from "react-redux";
 import { selectIsLoggedIn } from "../redux/auth/selectors";
 import LoginForm from "../components/LoginForm/LoginForm";
-import Navigation from "../components/Navigation/Navigation";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Login = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  if (isLoggedIn) {
-    return <Navigation to="/" />;
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      navigate("/contacts");
+    }
+  }, [isLoggedIn, navigate]);
+
   return (
     <div>
       <LoginForm />
